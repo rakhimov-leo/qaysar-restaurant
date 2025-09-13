@@ -1,6 +1,30 @@
 console.log("_________________TRAIN AREA________________");
 
 /*
+                             TASK-ZK:
+
+Shunday function yozing, u har soniyada 
+bir marta consolega 1 dan 5 gacha bolgan 
+raqamlarni chop etsin va 5 soniyadan keyin ishini toxtatsin.
+MASALAN: printNumbers()
+
+*/
+
+function printNumbers(): void {
+  let number: number = 1;
+  const interval: NodeJS.Timeout = setInterval(() => {
+    console.log(number);
+    if (number === 5) {
+      clearInterval(interval);
+    }
+    number++;
+  }, 1000);
+}
+
+printNumbers();
+
+/*
+
 TASK ZJ:
 
 Shunday function yozing, u berilgan array ichidagi
@@ -12,19 +36,19 @@ Yuqoridagi misolda, array nested bo'lgan holdatda ham,
 bizning function ularning yig'indisini hisoblab qaytarmoqda
 */
 
-function reduceNestedArray(arr: (number | any[])[]): number {
-  let sum = 0;
-  for (const item of arr) {
-    if (Array.isArray(item)) {
-      sum += reduceNestedArray(item);
-    } else if (typeof item === "number") {
-      sum += item;
-    }
-  }
-  return sum;
-}
+// function reduceNestedArray(arr: (number | any[])[]): number {
+//   let sum = 0;
+//   for (const item of arr) {
+//     if (Array.isArray(item)) {
+//       sum += reduceNestedArray(item);
+//     } else if (typeof item === "number") {
+//       sum += item;
+//     }
+//   }
+//   return sum;
+// }
 
-console.log(reduceNestedArray([1, [1, 5, [8]]]));
+// console.log(reduceNestedArray([1, [1, 5, [8]]]));
 //                      TASK ZI
 /* 
 Shundan function yozing, 
