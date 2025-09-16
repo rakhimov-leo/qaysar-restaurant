@@ -1,6 +1,21 @@
 console.log("_________________TRAIN AREA________________");
 
 /*
+TASK-ZL:
+
+Shunday function yozing, u parametrda
+ berilgan stringni kebab casega otkazib
+qaytarsin.Bosh harflarni kichik harflarga ham otkazsin.
+MASALAN: stringToKebab(“I love Kebab”) return “i-love-kebab”
+*/
+
+function stringToKebab(str: string): string {
+  return str.trim().toLowerCase().replace(/\s+/g, "-");
+}
+
+console.log(stringToKebab("  Hello World!  "));
+
+/*
                              TASK-ZK:
 
 Shunday function yozing, u har soniyada 
@@ -9,6 +24,7 @@ raqamlarni chop etsin va 5 soniyadan keyin ishini toxtatsin.
 MASALAN: printNumbers()
 
 */
+/*
 
 function printNumbers(): void {
   let number: number = 1;
@@ -22,6 +38,8 @@ function printNumbers(): void {
 }
 
 printNumbers();
+
+*/
 
 /*
 
