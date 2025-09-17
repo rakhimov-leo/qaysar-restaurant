@@ -1,6 +1,27 @@
 console.log("_________________TRAIN AREA________________");
 
 /*
+TASK ZM:
+
+Shunday function yozing,
+ va bu function parametr
+sifatida raqamlarni qabul
+qilsin.Bu function qabul qilingan
+raqamlarni orqasiga o'girib qaytarsin
+
+MASALAN: reverseInteger(123456789); return 987654321;
+
+Yuqoridagi misolda, function kiritilgan raqamlarni orqasiga
+o'girib (reverse) qilib qaytarmoqda.
+*/
+function reverseInteger(num: number): number {
+  const reversed = num.toString().split("").reverse().join("");
+  return parseInt(reversed) * Math.sign(num);
+}
+
+console.log(reverseInteger(123456789));
+
+/*
 TASK-ZL:
 
 Shunday function yozing, u parametrda
@@ -9,11 +30,11 @@ qaytarsin.Bosh harflarni kichik harflarga ham otkazsin.
 MASALAN: stringToKebab(“I love Kebab”) return “i-love-kebab”
 */
 
-function stringToKebab(str: string): string {
-  return str.trim().toLowerCase().replace(/\s+/g, "-");
-}
+// function stringToKebab(str: string): string {
+//   return str.trim().toLowerCase().replace(/\s+/g, "-");
+// }
 
-console.log(stringToKebab("  Hello World!  "));
+// console.log(stringToKebab("  Hello World!  "));
 
 /*
                              TASK-ZK:
