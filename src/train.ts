@@ -1,6 +1,56 @@
 console.log("_________________TRAIN AREA________________");
 
 /*
+TASK - ZO: Shunday function yozing, 
+u parametrdagi string ichidagi qavslar miqdori balansda 
+ekanligini aniqlasin.Ya'ni ochish("(") va yopish(")") qavslar 
+soni bir xil bolishi kerak. 
+MASALAN: areParenthesesBalanced("string()ichida(qavslar)soni()balansda") return true
+*/
+
+function areParenthesesBalanced(str: string): boolean {
+  let count = 0;
+
+  for (const ch of str) {
+    if (ch === "(") {
+      count++;
+    } else if (ch === ")") {
+      count--;
+      if (count < 0) {
+        return false;
+      }
+    }
+  }
+
+  return count === 0;
+}
+
+// Misollar
+console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda"));
+console.log(areParenthesesBalanced("(salom)(dunyo"));
+
+/*
+                       TASK ZN:
+
+Shunday function yozing, uni array va number parametri bo'lsin.
+Function'ning vazifasi ikkinchi parametr'da berilgan raqam, birinchi
+array parametr'ning indeksi bo'yicha hisoblanib, shu indeksgacha bo'lgan
+raqamlarni indeksdan tashqarida bo'lgan raqamlar bilan o'rnini
+almashtirib qaytarsin.
+
+MASALAN: rotateArray([1, 2, 3, 4, 5, 6], 3); return [5, 6, 1, 2, 3, 4];
+*/
+
+// function rotateArray(arr: number[], index: number): number[] {
+//   const left = arr.slice(0, index);
+//   const right = arr.slice(index);
+//   return [...right, ...left];
+// }
+
+// console.log(rotateArray([1, 2, 3, 4, 5, 6], 3));
+
+/*
+
 TASK ZM:
 
 Shunday function yozing,
@@ -14,12 +64,12 @@ MASALAN: reverseInteger(123456789); return 987654321;
 Yuqoridagi misolda, function kiritilgan raqamlarni orqasiga
 o'girib (reverse) qilib qaytarmoqda.
 */
-function reverseInteger(num: number): number {
-  const reversed = num.toString().split("").reverse().join("");
-  return parseInt(reversed) * Math.sign(num);
-}
+// function reverseInteger(num: number): number {
+//   const reversed = num.toString().split("").reverse().join("");
+//   return parseInt(reversed) * Math.sign(num);
+// }
 
-console.log(reverseInteger(123456789));
+// console.log(reverseInteger(123456789));
 
 /*
 TASK-ZL:
