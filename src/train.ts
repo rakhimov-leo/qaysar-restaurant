@@ -1,13 +1,42 @@
 console.log("_________________TRAIN AREA________________");
 
 /*
+TASK-ZP:
+
+Shunday function yozing, 
+u parametridagi string ichidagi
+ raqam va sonlarni(harflar) sonini sanasin.
+MASALAN: countNumberAndLetters(“string152%\¥”) return {number:3, letter:6}
+*/
+
+function countNumberAndLetters(input: string): {
+  number: number;
+  letter: number;
+} {
+  let numberCount = 0;
+  let letterCount = 0;
+
+  for (const char of input) {
+    if (/[0-9]/.test(char)) {
+      numberCount++;
+    } else if (/[a-zA-Z]/.test(char)) {
+      letterCount++;
+    }
+  }
+
+  return { number: numberCount, letter: letterCount };
+}
+
+console.log(countNumberAndLetters("stringTo152%¥"));
+
+/*
 TASK - ZO: Shunday function yozing, 
 u parametrdagi string ichidagi qavslar miqdori balansda 
 ekanligini aniqlasin.Ya'ni ochish("(") va yopish(")") qavslar 
 soni bir xil bolishi kerak. 
 MASALAN: areParenthesesBalanced("string()ichida(qavslar)soni()balansda") return true
 */
-
+/*
 function areParenthesesBalanced(str: string): boolean {
   let count = 0;
 
@@ -28,7 +57,7 @@ function areParenthesesBalanced(str: string): boolean {
 // Misollar
 console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda"));
 console.log(areParenthesesBalanced("(salom)(dunyo"));
-
+*/
 /*
                        TASK ZN:
 
