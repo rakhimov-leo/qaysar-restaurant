@@ -1,6 +1,32 @@
 console.log("_________________TRAIN AREA________________");
 
 /*
+TASK ZQ:
+
+Shunday function yozing, u parametridagi 
+array ichida 2 marta qaytarilgan sonlarni 
+alohida araryda qaytarsin.
+MASALAN: findDuplicates([1,2,3,4,5,4,3,4]) return [3, 4]
+*/
+
+function findDuplicates(arr: number[]): number[] {
+  const seen = new Set<number>();
+  const duplicates = new Set<number>();
+
+  for (const num of arr) {
+    if (seen.has(num)) {
+      duplicates.add(num);
+    } else {
+      seen.add(num);
+    }
+  }
+
+  return Array.from(duplicates);
+}
+
+console.log(findDuplicates([1, 2, 3, 9, 5, 4, 3, 9]));
+
+/*
 TASK-ZP:
 
 Shunday function yozing, 
@@ -9,6 +35,7 @@ u parametridagi string ichidagi
 MASALAN: countNumberAndLetters(“string152%\¥”) return {number:3, letter:6}
 */
 
+/*
 function countNumberAndLetters(input: string): {
   number: number;
   letter: number;
@@ -28,7 +55,7 @@ function countNumberAndLetters(input: string): {
 }
 
 console.log(countNumberAndLetters("stringTo152%¥"));
-
+*/
 /*
 TASK - ZO: Shunday function yozing, 
 u parametrdagi string ichidagi qavslar miqdori balansda 
