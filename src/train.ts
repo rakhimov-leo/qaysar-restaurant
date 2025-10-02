@@ -1,6 +1,33 @@
 console.log("_________________TRAIN AREA________________");
 
 /*
+TASK-ZR:
+
+Shunday function yozing, u 2 ta array parametr qabul qilsin.
+Siz bu ikki arrayning qiymatlari o'xshash bo'lishini 
+(ya'ni, ularning barcha elementlari bir xil bo'lishini) tekshirishingiz kerak.
+
+MASALAN:
+areArraysEqual([1, 2, 3], [3, 1, 2]) // true
+areArraysEqual([1, 2, 3], [3, 1, 2, 1]) // true
+areArraysEqual([1, 2, 3], [4, 1, 2]) // false
+*/
+function areArraysEqual<T>(arr1: T[], arr2: T[]): boolean {
+  const set1 = new Set(arr1);
+  const set2 = new Set(arr2);
+
+  if (set1.size !== set2.size) return false;
+
+  for (let val of set1) {
+    if (!set2.has(val)) return false;
+  }
+
+  return true;
+}
+
+console.log(areArraysEqual([1, 2, 3], [3, 1, 2]));
+
+/*
 TASK ZQ:
 
 Shunday function yozing, u parametridagi 
@@ -9,22 +36,22 @@ alohida araryda qaytarsin.
 MASALAN: findDuplicates([1,2,3,4,5,4,3,4]) return [3, 4]
 */
 
-function findDuplicates(arr: number[]): number[] {
-  const seen = new Set<number>();
-  const duplicates = new Set<number>();
+// function findDuplicates(arr: number[]): number[] {
+//   const seen = new Set<number>();
+//   const duplicates = new Set<number>();
 
-  for (const num of arr) {
-    if (seen.has(num)) {
-      duplicates.add(num);
-    } else {
-      seen.add(num);
-    }
-  }
+//   for (const num of arr) {
+//     if (seen.has(num)) {
+//       duplicates.add(num);
+//     } else {
+//       seen.add(num);
+//     }
+//   }
 
-  return Array.from(duplicates);
-}
+//   return Array.from(duplicates);
+// }
 
-console.log(findDuplicates([1, 2, 3, 9, 5, 4, 3, 9]));
+// console.log(findDuplicates([1, 2, 3, 9, 5, 4, 3, 9]));
 
 /*
 TASK-ZP:
