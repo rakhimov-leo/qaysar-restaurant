@@ -1,6 +1,55 @@
 console.log("_________________TRAIN AREA________________");
 
 /*
+                               TASK - ZT: 
+Shunday function yozing, u parametridagi string
+ ichida 1 martadan ortiq qaytarilmagan birinchi
+  harf indeksini qaytarsin.
+  MASALAN: firstUniqueCharIndex(“stamp”) return 0
+
+*/
+
+function firstUniqueCharIndex(str: string): number {
+  const charCount: Record<string, number> = {};
+  for (const char of str) {
+    charCount[char] = (charCount[char] || 0) + 1;
+  }
+  for (let i = 0; i < str.length; i++) {
+    if (charCount[str[i]] === 1) return i;
+  }
+  return -1;
+}
+
+console.log(firstUniqueCharIndex("success"));
+
+/*
+
+TASK ZS: Shunday function yozing, 
+bu function parametrdagi array ichida 
+bir marotaba takrorlangan element'ni q
+aytarsin MASALAN: singleNumber([4, 2, 1, 2, 1]); return 4;
+*/
+
+// function singleNumber(arr: number[]): number {
+//   const count: Record<number, number> = {};
+
+//   for (const num of arr) {
+//     count[num] = (count[num] || 0) + 1;
+//   }
+
+//   for (const num in count) {
+//     if (count[num] === 1) {
+//       return Number(num);
+//     }
+//   }
+
+//   throw new Error("No single number found");
+// }
+
+// // Misol:
+// console.log(singleNumber([4, 2, 1, 2, 1]));
+
+/*
 TASK-ZR:
 
 Shunday function yozing, u 2 ta array parametr qabul qilsin.
@@ -12,20 +61,20 @@ areArraysEqual([1, 2, 3], [3, 1, 2]) // true
 areArraysEqual([1, 2, 3], [3, 1, 2, 1]) // true
 areArraysEqual([1, 2, 3], [4, 1, 2]) // false
 */
-function areArraysEqual<T>(arr1: T[], arr2: T[]): boolean {
-  const set1 = new Set(arr1);
-  const set2 = new Set(arr2);
+// function areArraysEqual<T>(arr1: T[], arr2: T[]): boolean {
+//   const set1 = new Set(arr1);
+//   const set2 = new Set(arr2);
 
-  if (set1.size !== set2.size) return false;
+//   if (set1.size !== set2.size) return false;
 
-  for (let val of set1) {
-    if (!set2.has(val)) return false;
-  }
+//   for (let val of set1) {
+//     if (!set2.has(val)) return false;
+//   }
 
-  return true;
-}
+//   return true;
+// }
 
-console.log(areArraysEqual([1, 2, 3], [3, 1, 2]));
+// console.log(areArraysEqual([1, 2, 3], [3, 1, 2]));
 
 /*
 TASK ZQ:
