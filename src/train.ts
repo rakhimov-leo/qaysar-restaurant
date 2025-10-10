@@ -1,6 +1,26 @@
 console.log("_________________TRAIN AREA________________");
 
 /*
+                               TASK-ZU:
+
+Shunday function yozing, u parametridagi 
+array ichida takrorlanmagan raqamlar 
+yig'indisini qaytarsin.
+MASALAN: sumOfUnique([1,2,3,2]) return 4
+*/
+function sumOfUnique(arr: number[]): number {
+  let sum = 0;
+  for (const num of arr) {
+    if (arr.indexOf(num) === arr.lastIndexOf(num)) {
+      sum += num;
+    }
+  }
+  return sum;
+}
+
+console.log(sumOfUnique([1, 2, 3, 2]));
+
+/*
                                TASK - ZT: 
 Shunday function yozing, u parametridagi string
  ichida 1 martadan ortiq qaytarilmagan birinchi
@@ -9,18 +29,18 @@ Shunday function yozing, u parametridagi string
 
 */
 
-function firstUniqueCharIndex(str: string): number {
-  const charCount: Record<string, number> = {};
-  for (const char of str) {
-    charCount[char] = (charCount[char] || 0) + 1;
-  }
-  for (let i = 0; i < str.length; i++) {
-    if (charCount[str[i]] === 1) return i;
-  }
-  return -1;
-}
+// function firstUniqueCharIndex(str: string): number {
+//   const charCount: Record<string, number> = {};
+//   for (const char of str) {
+//     charCount[char] = (charCount[char] || 0) + 1;
+//   }
+//   for (let i = 0; i < str.length; i++) {
+//     if (charCount[str[i]] === 1) return i;
+//   }
+//   return -1;
+// }
 
-console.log(firstUniqueCharIndex("success"));
+// console.log(firstUniqueCharIndex("success"));
 
 /*
 
