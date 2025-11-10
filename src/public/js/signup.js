@@ -1,55 +1,39 @@
-console.log("Signup frontend javascript file");
+console.log("Restaurant Signup JS");
 
 $(function () {
-  const fileTarget = $(".file-box .upload-hidden");
-  let filename;
+  $(".upload-hidden").on("change", function () {
+    const uploadFile = this.files[0];
+    if (!uploadFile) return;
 
-  fileTarget.on("change", function () {
-    if (window.FileReader) {
-      const uploadFile = $(this)[0].files[0],
-        fileType = uploadFile.type,
-        validImageType = ["image/jpg", "image/jpeg", "image/png"];
-      if (!validImageType.includes(fileType)) {
-        alert("Please insert only jpg, jpeg and png!");
-      } else {
-        if (uploadFile) {
-          console.log(URL.createObjectURL(uploadFile));
-          $(".upload-img-frame")
-            .attr("src", URL.createObjectURL(uploadFile))
-            .addClass("success");
-        }
-        filename = $(this)[0].files[0].name;
-      }
-      $(this).siblings(".upload-name").val(filename);
+    const validTypes = ["image/jpg", "image/jpeg", "image/png"];
+    if (!validTypes.includes(uploadFile.type)) {
+      alert("Please upload only jpg, jpeg, or png!");
+      return;
     }
+
+    $("#preview-img").attr("src", URL.createObjectURL(uploadFile));
+    $(".upload-name").val(uploadFile.name);
   });
 });
 
 function validateSignupForm() {
-  const memberNick = $(".member-nick").val(),
-    memberPhone = $(".member-phone").val(),
-    memberPassword = $(".member-password").val(),
-    confirmPasword = $(".confirm-password").val();
+  const nick = $(".member-nick").val(),
+    phone = $(".member-phone").val(),
+    pass = $(".member-password").val(),
+    confirm = $(".confirm-password").val();
 
-  if (
-    memberNick === "" ||
-    memberPhone === "" ||
-    memberPassword === "" ||
-    confirmPasword === ""
-  ) {
+  if (!nick || !phone || !pass || !confirm) {
     alert("Please insert all required inputs");
     return false;
   }
 
-  if (memberPassword !== confirmPasword) {
+  if (pass !== confirm) {
     alert("Password differs, please check!");
     return false;
   }
 
-  const memberImage = $(".member-image").get(0)?.files[0]?.name
-    ? $(".member-image").get(0)?.files[0]?.name
-    : null;
-  if (!memberImage) {
+  const image = $(".member-image")[0]?.files?.length > 0;
+  if (!image) {
     alert("Please insert restaurant image!");
     return false;
   }
