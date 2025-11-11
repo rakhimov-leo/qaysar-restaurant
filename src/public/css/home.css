@@ -30,6 +30,15 @@
   font-family: monospace;
 }
 
+.home-container .navigation-menu ul {
+  display: flex;
+  justify-content: center;
+  gap: 100px; /* ← Masofa shu */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 .home-container .html {
   height: 100%;
 }
