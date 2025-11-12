@@ -63,13 +63,17 @@
 
         <div class="media-frame">
           <div class="upload-img-frame">
-            <img id="preview-img" src="/img/default.jpeg" alt="Preview" />
+            <img
+              id="preview-img"
+              src="/img/Uzbek_Kitchen_Joy.png"
+              alt="Preview"
+              onclick="document.getElementById('input-file').click()"
+            />
           </div>
 
           <div class="upload-container">
-            <span class="media-text">Product image</span>
+            <span class="media-text">Restaurant image</span>
             <div class="file-box">
-              <input class="upload-name" value="Choose image" disabled />
               <label for="input-file" class="file-input-label"
                 >Upload Image</label
               >
@@ -78,6 +82,8 @@
                 id="input-file"
                 class="upload-hidden member-image"
                 name="memberImage"
+                style="display: none"
+                onchange="previewImage(this)"
               />
             </div>
             <p class="thumbnail-desc">
