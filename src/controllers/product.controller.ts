@@ -43,15 +43,14 @@ productController.getProduct = async (req: ExtendedRequest, res: Response) => {
     console.log("req.member:", req.member);
     const memberId = req.member?._id ?? null,
       result = await productService.getProduct(memberId, id);
-    
-    
+
     res.status(HttpCode.OK).json(result);
   } catch (err) {
     console.log("Error, getProduct:", err);
     if (err instanceof Errors) res.status(err.code).json(err);
     else res.status(Errors.standard.code).json(Errors.standard);
   }
-}
+};
 
 /** SSR */
 
@@ -97,18 +96,32 @@ productController.createNewProduct = async (
   }
 };
 
-productController.updateChosenProduct = async (req: Request, res: Response) => {
+productController.updateChosenProduct = async (
+  req: AdminRequest,
+  res: Response
+) => {
   try {
-    console.log("updateChosenProduct");
     const id = req.params.id;
+    const updateData: any = req.body;
 
-    const result = await productService.updateChosenProduct(id, req.body);
+    if (req.files?.length) {
+      updateData.productImages = req.files.map((f) =>
+        f.path.replace(/\\/g, "/")
+      );
+    }
 
-    res.status(HttpCode.OK).json({ data: result });
+    const updatedProduct = await productService.updateChosenProduct(
+      id,
+      updateData
+    );
+    res
+      .status(HttpCode.OK)
+      .json({ message: "Product updated successfully!", data: updatedProduct });
   } catch (err) {
     console.log("Error, updateChosenProduct:", err);
-    if (err instanceof Errors) res.status(err.code).json(err);
-    else res.status(Errors.standard.code).json(Errors.standard);
+    res
+      .status(HttpCode.INTERNAL_SERVER_ERROR)
+      .json({ message: "Something went wrong" });
   }
 };
 

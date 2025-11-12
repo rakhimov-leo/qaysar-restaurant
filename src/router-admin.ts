@@ -41,6 +41,14 @@ routerAdmin.post(
   productController.updateChosenProduct
 );
 
+// UPDATE PRODUCT INLINE
+routerAdmin.post(
+  "/product/:id",
+  restaurantController.verifyRestaurant,
+  makeUploader("products").array("productImages", 5),
+  productController.updateChosenProduct
+);
+
 //** User */
 
 routerAdmin.get(
