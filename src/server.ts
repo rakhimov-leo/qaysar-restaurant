@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import app from "./app";
 
 //TCP  (doimiy bog'lanish)
-mongoose  //backend hamda database oralig'idagi bog'lanish
+mongoose //backend hamda database oralig'idagi bog'lanish
   .connect(process.env.MONGO_URL as string, {})
   .then((data) => {
     console.log("MongoDB connection succeed");
