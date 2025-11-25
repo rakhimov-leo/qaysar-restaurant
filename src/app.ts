@@ -6,6 +6,8 @@ import routerAdmin from "./router-admin"; //admin panel yo‘llari.
 import morgan from "morgan"; //HTTP log yozish kutubxonasi
 import cookieParser from "cookie-parser"; //cookie’larni o‘qish.
 import { MORGAN_FORMAT } from "./libs/config"; // log formatini belgilovchi sozlama.
+import { Server as SocketIOServer } from "socket.io";
+import http from "http";
 
 import session from "express-session";
 import ConnectMongoDB from "connect-mongodb-session";
@@ -63,4 +65,23 @@ app.use("/admin", routerAdmin); //Middleware Design Pattern & SPA-(EJS)
 //single page applacation
 app.use("/", router); //SPA:REACT
 
-export default app;
+const server = http.createServer(app);
+const io = new SocketIOServer(server, {
+  cors: {
+    origin: true,
+    credentials: true,
+  },
+});
+
+let summaryClient = 0;
+io.on("connection", (socket) => {
+  summaryClient++;
+  console.log(`Connection & total [${summaryClient}]`);
+
+  socket.on("disconnect", () => {
+    summaryClient--;
+    console.log(`Disconnection & total [${summaryClient}]`);
+  });
+});
+
+export default server;
