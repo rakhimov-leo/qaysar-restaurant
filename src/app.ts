@@ -1,10 +1,11 @@
 import cors from "cors";
 import express from "express"; //server yaratish uchun framework.
-import path from "path"; //fayl va papka yo‘llarini to‘g‘ri birlashtirish uchun.
-import router from "./router"; //odatiy foydalanuvchi yo‘llari.
-import routerAdmin from "./router-admin"; //admin panel yo‘llari.
+import path from "path"; //fayl va papka yo'llarini to'g'ri birlashtirish uchun.
+import fs from "fs"; //file system operations
+import router from "./router"; //odatiy foydalanuvchi yo'llari.
+import routerAdmin from "./router-admin"; //admin panel yo'llari.
 import morgan from "morgan"; //HTTP log yozish kutubxonasi
-import cookieParser from "cookie-parser"; //cookie’larni o‘qish.
+import cookieParser from "cookie-parser"; //cookie'larni o'qish.
 import { MORGAN_FORMAT } from "./libs/config"; // log formatini belgilovchi sozlama.
 import { Server as SocketIOServer } from "socket.io";
 import http from "http";
@@ -63,7 +64,36 @@ app.set("view engine", "ejs");
 
 app.use("/admin", routerAdmin); //Middleware Design Pattern & SPA-(EJS)
 //single page applacation
-app.use("/", router); //SPA:REACT
+app.use("/", router); //SPA:REACT - API endpoints
+
+// React frontend build'ni serve qilish (SPA routing uchun)
+// Frontend build papkasi - server'da to'g'ri path'ni ko'rsatish kerak
+const reactBuildPath = path.join(__dirname, "../../qaysar-react/build");
+
+// Frontend static files'larni serve qilish (faqat mavjud bo'lsa)
+try {
+  if (fs.existsSync(reactBuildPath)) {
+    app.use(express.static(reactBuildPath));
+    
+    // Barcha non-API route'lar uchun React app'ni qaytarish (SPA routing)
+    app.get("*", (req, res, next) => {
+      // API endpoint'lar uchun emas
+      if (
+        req.path.startsWith("/admin") ||
+        req.path.startsWith("/member") ||
+        req.path.startsWith("/product") ||
+        req.path.startsWith("/order") ||
+        req.path.startsWith("/uploads")
+      ) {
+        return next();
+      }
+      // React app'ni serve qilish
+      res.sendFile(path.join(reactBuildPath, "index.html"));
+    });
+  }
+} catch (err) {
+  console.log("React build path not found, serving API only");
+}
 
 const server = http.createServer(app);
 const io = new SocketIOServer(server, {
